@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+tests/bin/yii teryt/importer/terc tests/_data/TERC.csv
+tests/bin/yii teryt/importer/simc tests/_data/SIMC.csv
