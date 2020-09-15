@@ -62,10 +62,9 @@ class Commune extends Terc {
 		];
 	}
 
-	public static function find(array $types = self::COMMUNE_TYPES): TercQuery {
+	public static function find(): TercQuery {
 		return parent::find()
-			->onlyCommunes()
-			->andFilterWhere(['commune_type' => $types]);
+			->onlyCommunes();
 	}
 
 }

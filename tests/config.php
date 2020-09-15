@@ -27,9 +27,9 @@ return [
 	'components' => [
 		'db' => [
 			'class' => 'yii\db\Connection',
-			'dsn' => 'mysql:host=127.0.0.1;dbname=vestra_dev',
-			'username' => 'root',
-			'password' => '213joidjasoej',
+			'dsn' => 'mysql:host=localhost;dbname=edzima-teryt-test',
+			'username' => 'edzima-teryt-test',
+			'password' => 'edzima-teryt-test',
 			'charset' => 'utf8',
 		],
 		'location' => [

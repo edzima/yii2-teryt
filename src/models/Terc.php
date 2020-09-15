@@ -77,8 +77,8 @@ class Terc extends ActiveRecord {
 		return Commune::getTypesNames()[$this->commune_type] ?? null;
 	}
 
-	public function getRegion(): TercQuery {
-		return $this->hasOne(Region::class, ['region_id' => 'region_id']);
+	public function getRegion(): Region {
+		return Region::getModel($this->region_id);
 	}
 
 	public function getDistricts(): TercQuery {

@@ -78,11 +78,5 @@ class TercQuery extends ActiveQuery {
 		$this->andWhere(['commune_type' => $types]);
 		return $this;
 	}
-
-	protected function createModels($rows): array {
-		if ($this->asArray) {
-			return $rows;
-		}
-		return $rows;
-	}
+	
 }

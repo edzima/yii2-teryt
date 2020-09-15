@@ -34,12 +34,17 @@ class Module extends BaseModule implements BootstrapInterface {
 		Yii::$app->i18n->translations['edzima/teryt/*'] = [
 			'class' => 'yii\i18n\PhpMessageSource',
 			'sourceLanguage' => 'en-US',
-			'basePath' => '@app/messages',
+			'basePath' => '@edzima/teryt/messages',
+			'fileMap' => [
+				'edzima\teryt\commune' => 'commune.php',
+				'edzima\teryt\common' => 'common.php',
+				'edzima\teryt\simc' => 'simc.php',
+			],
 		];
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
 	public static function t($category, $message, $params = [], $language = null) {
 		return Yii::t('edzima/teryt/' . $category, $message, $params, $language);

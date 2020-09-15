@@ -4,7 +4,7 @@ namespace edzima\teryt\models;
 
 use edzima\teryt\models\query\TercQuery;
 use yii\base\InvalidCallException;
-use yii\base\NotSupportedException;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class Region
@@ -65,6 +65,10 @@ class Region extends Terc {
 				->all();
 		}
 		return static::$MODELS;
+	}
+
+	public static function getNames(): array {
+		return ArrayHelper::map(static::getModels(), 'region_id', 'name');
 	}
 
 	public static function find(): TercQuery {

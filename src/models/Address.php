@@ -21,11 +21,13 @@ class Address extends Model {
 
 	public string $commune;
 
+	public ?int $cityId = null;
+
 	public static array $defaultRequiredFields = ['name', 'region', 'district', 'commune'];
 
 	public array $requiredFields = [];
 
-	public string $fullNameTemplate = '{name} ({region}, {district}, {commune}';
+	public string $fullNameTemplate = '{name} ({region}, {district}, {commune})';
 
 	/**
 	 * {@inheritdoc}

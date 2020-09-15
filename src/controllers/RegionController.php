@@ -10,6 +10,7 @@ class RegionController extends Controller {
 	public function actionIndex(): array {
 		return Region::find()
 			->select(['region_id', 'name'])
+			->indexBy('region_id')
 			->asArray()
 			->all();
 	}

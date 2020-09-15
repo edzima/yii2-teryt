@@ -2,13 +2,13 @@
 
 namespace edzima\teryt\components;
 
+use ruskid\csvimporter\CSVImporter;
+use ruskid\csvimporter\CSVReader;
 use ruskid\csvimporter\ImportInterface;
 use ruskid\csvimporter\MultipleImportStrategy;
-use yii\base\Component;
-use ruskid\csvimporter\CSVReader;
-use ruskid\csvimporter\CSVImporter;
-use yii\base\InvalidConfigException;
 use Yii;
+use yii\base\Component;
+use yii\base\InvalidConfigException;
 
 class Importer extends Component {
 
@@ -27,8 +27,7 @@ class Importer extends Component {
 		if ($this->clearTable) {
 			Yii::$app->db->createCommand()->delete($this->tableName)->execute();
 		}
-		$count = $importer->import($this->importStrategy());
-		return $count;
+		return $importer->import($this->importStrategy());
 	}
 
 	protected function getCSVReader(): CSVReader {
@@ -50,7 +49,7 @@ class Importer extends Component {
 			'tableName' => $this->tableName,
 			'configs' => $this->strategyConfigs,
 			'skipImport' => static function (array $line): bool {
-				return empty($line);
+				return empty($line) || empty(reset($line));
 			},
 		]);
 	}

@@ -21,30 +21,32 @@ use yii\db\ActiveRecord;
  * @property string $name
  * @property string $date
  *
- * @property-read string $communeTypeName
+ * @property-read string $typeName
  * @property-read Terc $terc
  * @property-read Region $region
  * @property-read bool $isIndependent
  *
  * @property-read Address
+ * @property-read string $nameWithRegionAndDistrict
  */
 class Simc extends ActiveRecord {
 
-	public const TYPE_TOWN_PART = 00;// część miejscowości
-	public const TYPE_VILLAGE = 01;// wieś
-	public const TYPE_COLOGNE = 02;// kolonia
-	public const TYPE_HAMLET = 03;// przysiółek
-	public const TYPE_SETTLEMENT = 04; //osada
-	public const TYPE_FOREST_SETTLEMENT = 05;// osada leśna
-	public const TYPE_ESTATE = 06;//osiedle
-	public const TYPE_TOURIST_HOSTEL = 07;//schronisko turystyczne
-	public const TYPE_DISTRICT_OF_WARSAW = 95;//dzielnica m. st. Warszawy
-	public const TYPE_CITY = 96;//miasto
-	public const TYPE_DELEGATION = 98;//delegatura
-	public const TYPE_CITY_PART = 99;// część miasta
+	public const TYPE_TOWN_PART = 00;
+	public const TYPE_VILLAGE = 01;
+	public const TYPE_COLOGNE = 02;
+	public const TYPE_HAMLET = 03;
+	public const TYPE_SETTLEMENT = 04;
+	public const TYPE_FOREST_SETTLEMENT = 05;
+	public const TYPE_ESTATE = 06;
+	public const TYPE_TOURIST_HOSTEL = 07;
+	public const TYPE_DISTRICT_OF_WARSAW = 95;
+	public const TYPE_CITY = 96;
+	public const TYPE_DELEGATION = 98;
+	public const TYPE_CITY_PART = 99;
 
 	public function getAddress(): Address {
 		$address = $this->terc->getAddress();
+		$address->cityId = $this->id;
 		$address->name = $this->name;
 		return $address;
 	}
@@ -56,6 +58,14 @@ class Simc extends ActiveRecord {
 		return '{{%teryt_simc}}';
 	}
 
+	public function getNameWithRegionAndDistrict(): string {
+		return $this->name . ' (' . $this->terc->region . ', ' . $this->terc->district->name . ')';
+	}
+
+	public function getTypeName(): string {
+		return static::getTypesNames()[$this->city_type];
+	}
+
 	/**
 	 * {@inheritdoc}
 	 */
@@ -65,6 +75,7 @@ class Simc extends ActiveRecord {
 			[['id', 'region_id', 'district_id', 'commune_id', 'commune_type', 'city_type', 'is_common_name'], 'integer'],
 			[['date'], 'safe'],
 			[['name'], 'string', 'max' => 100],
+			['type']
 		];
 	}
 
@@ -103,8 +114,29 @@ class Simc extends ActiveRecord {
 		return Region::getModel($this->region_id);
 	}
 
+	/**
+	 * {@inheritdoc}
+	 * @return SimcQuery
+	 */
 	public static function find(): SimcQuery {
 		return new SimcQuery(static::class);
+	}
+
+	public static function getTypesNames(): array {
+		return [
+			static::TYPE_TOWN_PART => Module::t('simc', 'Town part'),
+			static::TYPE_VILLAGE => Module::t('simc', 'Village'),
+			static::TYPE_COLOGNE => Module::t('simc', 'Cologne'),
+			static::TYPE_HAMLET => Module::t('simc', 'Hamlet'),
+			static::TYPE_SETTLEMENT => Module::t('simc', 'Settlement'),
+			static::TYPE_FOREST_SETTLEMENT => Module::t('simc', 'Forest settlement'),
+			static::TYPE_ESTATE => Module::t('simc', 'Estate'),
+			static::TYPE_TOURIST_HOSTEL => Module::t('simc', 'Tourist hostel'),
+			static::TYPE_DISTRICT_OF_WARSAW => Module::t('simc', 'District of Warsaw'),
+			static::TYPE_CITY => Module::t('simc', 'City'),
+			static::TYPE_DELEGATION => Module::t('simc', 'Delegation'),
+			static::TYPE_CITY_PART => Module::t('simc', 'City part'),
+		];
 	}
 
 }
