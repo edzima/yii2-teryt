@@ -16,15 +16,14 @@ class SimcController extends Controller {
 		$out = ['results' => ['id' => '', 'text' => '']];
 		if (!is_null($q) && strlen($q) >= static::MIN_QUERY_LENGTH) {
 			$models = Simc::find()
-				->withName($q)
+				->startWithName($q)
 				->with(['terc.district'])
 				->limit(static::CITY_LIST_LIMIT)
 				->orderBy([
 					'commune_type' => SORT_ASC,
 				])
 				->all();
-			ArrayHelper::multisort($models, ['commune_type', 'isIndependent'], [SORT_ASC, SORT_DESC]);
-			foreach ($models as $model) {
+			foreach ($this->sortModels($models, $q) as $model) {
 				$city[] = $this->parseSimc($model);
 			}
 			$out['results'] = $city;
@@ -38,6 +37,25 @@ class SimcController extends Controller {
 			}
 		}
 		return $this->asJson($out);
+	}
+
+	protected function sortModels(array $models, string $search): array {
+		ArrayHelper::multisort($models, ['commune_type', 'isIndependent'], [SORT_ASC, SORT_DESC]);
+
+		$search = strtolower($search);
+
+		usort($models, static function (Simc $a, Simc $b) use ($search) {
+			$aName = strtolower($a->name);
+			$bName = strtolower($b->name);
+			if ($aName === $search && $bName === $search) {
+				return 0;
+			}
+			if ($aName === $search) {
+				return -1;
+			}
+			return 1;
+		});
+		return $models;
 	}
 
 	protected function parseSimc(Simc $model): array {

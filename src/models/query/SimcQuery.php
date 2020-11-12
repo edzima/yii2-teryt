@@ -13,6 +13,12 @@ class SimcQuery extends ActiveQuery {
 		return $this;
 	}
 
+	public function startWithName(string $name): self {
+		$value = $name . '%';
+		$this->andWhere(['like', Simc::tableName() . '.name', $value, false]);
+		return $this;
+	}
+
 	public function onlyCities(): self {
 		return $this->onlyTypes([Simc::TYPE_CITY]);
 	}
