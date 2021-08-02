@@ -39,9 +39,9 @@ class Module extends BaseModule implements BootstrapInterface {
 			'sourceLanguage' => 'en-US',
 			'basePath' => '@edzima/teryt/messages',
 			'fileMap' => [
-				'edzima\teryt\commune' => 'commune.php',
-				'edzima\teryt\common' => 'common.php',
-				'edzima\teryt\simc' => 'simc.php',
+				'edzima/teryt/commune' => 'commune.php',
+				'edzima/teryt/common' => 'common.php',
+				'edzima/teryt/simc' => 'simc.php',
 			],
 		];
 	}

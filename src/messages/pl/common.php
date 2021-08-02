@@ -10,4 +10,6 @@ return [
 	'Is common name' => 'Is common name',
 	'City type' => 'City type',
 	'Base ID' => 'Symbol podstawowy',
+	'Search for a city...' => 'Wyszukaj miejscowość...',
+	'Waiting for results...' => 'Oczekiwanie na wyniki...',
 ];

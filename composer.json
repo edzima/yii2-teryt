@@ -20,10 +20,11 @@
 	"require": {
 		"php": ">=7.4.0",
 		"yiisoft/yii2": "*",
-		"ruskid/yii2-csv-importer": "^1.0.0"
+		"ruskid/yii2-csv-importer": "^1.0.0",
+		"kartik-v/yii2-widget-select2": ">=2.0.0"
 	},
 	"require-dev": {
-		"roave/security-advisories": "dev-master",
+		"roave/security-advisories": "dev-latest",
 		"codeception/codeception": "^4.1",
 		"codeception/module-phpbrowser": "^1.0.0",
 		"codeception/module-asserts": "^1.0.0",
