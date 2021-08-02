@@ -16,6 +16,9 @@ use yii\console\Application as ConsoleApplication;
  */
 class Module extends BaseModule implements BootstrapInterface {
 
+	public int $minLengthCityListQuery = 3;
+	public int $cityListLimit = 80;
+
 	public $controllerNamespace = 'edzima\teryt\controllers';
 
 	public function bootstrap($app) {

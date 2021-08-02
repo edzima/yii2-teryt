@@ -34,6 +34,9 @@ class TercController extends Controller {
 			$ids = $_POST['depdrop_parents'];
 			$region_id = $ids[0] ?? null;
 			$district_id = $ids[1] ?? null;
+			if (empty($district_id)) {
+				$district_id = null;
+			}
 			if ($region_id !== null) {
 				$output = $this->parseModels(
 					Terc::find()->onlyCommunes($region_id, $district_id)->all(),

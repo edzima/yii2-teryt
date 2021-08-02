@@ -3,22 +3,25 @@
 namespace edzima\teryt\controllers;
 
 use edzima\teryt\models\Simc;
+use edzima\teryt\Module;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\Response;
 
 class SimcController extends Controller {
 
-	public const MIN_QUERY_LENGTH = 3;
-	protected const CITY_LIST_LIMIT = 30;
+	/**
+	 * @var Module
+	 */
+	public $module;
 
 	public function actionCityList(string $q = null, int $id = null): Response {
 		$out = ['results' => ['id' => '', 'text' => '']];
-		if (!is_null($q) && strlen($q) >= static::MIN_QUERY_LENGTH) {
+		if (!is_null($q) && strlen($q) >= $this->module->minLengthCityListQuery) {
 			$models = Simc::find()
 				->startWithName($q)
 				->with(['terc.district'])
-				->limit(static::CITY_LIST_LIMIT)
+				->limit($this->module->cityListLimit)
 				->orderBy([
 					'commune_type' => SORT_ASC,
 				])
