@@ -13,8 +13,8 @@ class TercController extends Controller {
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		if (isset($_POST['depdrop_parents'])) {
 			$parents = $_POST['depdrop_parents'];
-			$region_id = reset($parents);
-			if ($region_id !== null) {
+			$region_id = (int) reset($parents);
+			if ($region_id > 0) {
 				$output = $this->parseModels(
 					Terc::find()->onlyDistricts($region_id)->all(),
 					'district_id');
@@ -32,12 +32,12 @@ class TercController extends Controller {
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		if (isset($_POST['depdrop_parents'])) {
 			$ids = $_POST['depdrop_parents'];
-			$region_id = $ids[0] ?? null;
-			$district_id = $ids[1] ?? null;
-			if (empty($district_id)) {
+			$region_id = $ids[0] ? (int) $ids[0] : null;
+			$district_id = $ids[1] ? (int) $ids[1] : null;
+			if ($district_id <= 0) {
 				$district_id = null;
 			}
-			if ($region_id !== null) {
+			if ($region_id > 0) {
 				$output = $this->parseModels(
 					Terc::find()->onlyCommunes($region_id, $district_id)->all(),
 					'commune_id');
