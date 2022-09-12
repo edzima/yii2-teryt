@@ -22,9 +22,8 @@ class SimcController extends Controller {
 				->startWithName($q)
 				->with(['terc.district'])
 				->limit($this->module->cityListLimit)
-				->orderBy([
-					'commune_type' => SORT_ASC,
-				])
+				->andWhere(['>', 'city_type', 0])
+				->andWhere(['<>', 'city_type', Simc::TYPE_CITY_PART])
 				->all();
 			foreach ($this->sortModels($models, $q) as $model) {
 				$city[] = $this->parseSimc($model);
@@ -43,7 +42,7 @@ class SimcController extends Controller {
 	}
 
 	protected function sortModels(array $models, string $search): array {
-		ArrayHelper::multisort($models, ['commune_type', 'isIndependent'], [SORT_ASC, SORT_DESC]);
+		ArrayHelper::multisort($models, ['city_type', 'isIndependent'], [SORT_ASC, SORT_DESC]);
 
 		$search = strtolower($search);
 
@@ -64,7 +63,7 @@ class SimcController extends Controller {
 	protected function parseSimc(Simc $model): array {
 		return [
 			'id' => $model->id,
-			'text' => $model->nameWithRegionAndDistrict,
+			'text' => $model->nameWithRegionAndDistrict . ' cityType: ' . $model->city_type . ' commune type: ' . $model->commune_type,
 		];
 	}
 
