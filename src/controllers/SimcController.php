@@ -63,7 +63,7 @@ class SimcController extends Controller {
 	protected function parseSimc(Simc $model): array {
 		return [
 			'id' => $model->id,
-			'text' => $model->nameWithRegionAndDistrict . ' cityType: ' . $model->city_type . ' commune type: ' . $model->commune_type,
+			'text' => $model->nameWithRegionAndDistrict,
 		];
 	}
 
