@@ -25,6 +25,7 @@ class SimcController extends Controller {
 				->andWhere(['>', 'city_type', 0])
 				->andWhere(['<>', 'city_type', Simc::TYPE_CITY_PART])
 				->all();
+			$city = [];
 			foreach ($this->sortModels($models, $q) as $model) {
 				$city[] = $this->parseSimc($model);
 			}
