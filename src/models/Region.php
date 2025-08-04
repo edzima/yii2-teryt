@@ -22,22 +22,22 @@ use yii\helpers\ArrayHelper;
  */
 class Region extends Terc {
 
-	public const REGION_DOLNOSLASKIE = 2;
-	public const REGION_KUJAWSKO_POMORSKIE = 4;
-	public const REGION_LUBELSKIE = 6;
-	public const REGION_LUBUSKIE = 8;
-	public const REGION_LODZKIE = 10;
-	public const REGION_MALOPOLSKIE = 12;
-	public const REGION_MAZOWIECKIE = 14;
-	public const REGION_OPOLSKIE = 16;
-	public const REGION_PODKARPACKIE = 18;
-	public const REGION_PODLASKIE = 20;
-	public const REGION_POMORSKIE = 22;
-	public const REGION_SLASKIE = 24;
-	public const REGION_SWIETOKRZYSKIE = 26;
-	public const REGION_WARMINSKO_MAZURSKIE = 28;
-	public const REGION_WIELKOPOLSKIE = 30;
-	public const REGION_ZACHODNIOPOMORSKIE = 32;
+	public const REGION_DOLNOSLASKIE = '02';
+	public const REGION_KUJAWSKO_POMORSKIE = '04';
+	public const REGION_LUBELSKIE = '06';
+	public const REGION_LUBUSKIE = '08';
+	public const REGION_LODZKIE = '10';
+	public const REGION_MALOPOLSKIE = '12';
+	public const REGION_MAZOWIECKIE = '14';
+	public const REGION_OPOLSKIE = '16';
+	public const REGION_PODKARPACKIE = '18';
+	public const REGION_PODLASKIE = '20';
+	public const REGION_POMORSKIE = '22';
+	public const REGION_SLASKIE = '24';
+	public const REGION_SWIETOKRZYSKIE = '26';
+	public const REGION_WARMINSKO_MAZURSKIE = '28';
+	public const REGION_WIELKOPOLSKIE = '30';
+	public const REGION_ZACHODNIOPOMORSKIE = '32';
 
 	private static array $MODELS;
 
@@ -70,22 +70,22 @@ class Region extends Terc {
 
 	public static function getNames(): array {
 		return [
-			static::REGION_DOLNOSLASKIE        => Module::t('region', 'Lower Silesia'),
-			static::REGION_KUJAWSKO_POMORSKIE  => Module::t('region', 'Kuyavia-Pomerania'),
-			static::REGION_LUBELSKIE           => Module::t('region', 'Lublin'),
-			static::REGION_LUBUSKIE            => Module::t('region', 'Lubusz'),
-			static::REGION_LODZKIE             => Module::t('region', 'Lodz'),
-			static::REGION_MALOPOLSKIE         => Module::t('region', 'Lesser Poland'),
-			static::REGION_MAZOWIECKIE         => Module::t('region', 'Masovia'),
-			static::REGION_OPOLSKIE            => Module::t('region', 'Opole'),
-			static::REGION_PODKARPACKIE        => Module::t('region', 'Subcarpathia'),
-			static::REGION_PODLASKIE           => Module::t('region', 'Podlaskie'),
-			static::REGION_POMORSKIE           => Module::t('region', 'Pomerania'),
-			static::REGION_SLASKIE             => Module::t('region', 'Silesia'),
-			static::REGION_SWIETOKRZYSKIE      => Module::t('region', 'Holy Cross'),
+			static::REGION_DOLNOSLASKIE => Module::t('region', 'Lower Silesia'),
+			static::REGION_KUJAWSKO_POMORSKIE => Module::t('region', 'Kuyavia-Pomerania'),
+			static::REGION_LUBELSKIE => Module::t('region', 'Lublin'),
+			static::REGION_LUBUSKIE => Module::t('region', 'Lubusz'),
+			static::REGION_LODZKIE => Module::t('region', 'Lodz'),
+			static::REGION_MALOPOLSKIE => Module::t('region', 'Lesser Poland'),
+			static::REGION_MAZOWIECKIE => Module::t('region', 'Masovia'),
+			static::REGION_OPOLSKIE => Module::t('region', 'Opole'),
+			static::REGION_PODKARPACKIE => Module::t('region', 'Subcarpathia'),
+			static::REGION_PODLASKIE => Module::t('region', 'Podlaskie'),
+			static::REGION_POMORSKIE => Module::t('region', 'Pomerania'),
+			static::REGION_SLASKIE => Module::t('region', 'Silesia'),
+			static::REGION_SWIETOKRZYSKIE => Module::t('region', 'Holy Cross'),
 			static::REGION_WARMINSKO_MAZURSKIE => Module::t('region', 'Warmia-Masuria'),
-			static::REGION_WIELKOPOLSKIE       => Module::t('region', 'Greater Poland'),
-			static::REGION_ZACHODNIOPOMORSKIE  => Module::t('region', 'West Pomerania'),
+			static::REGION_WIELKOPOLSKIE => Module::t('region', 'Greater Poland'),
+			static::REGION_ZACHODNIOPOMORSKIE => Module::t('region', 'West Pomerania'),
 		];
 	}
 
