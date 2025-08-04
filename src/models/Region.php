@@ -3,6 +3,7 @@
 namespace edzima\teryt\models;
 
 use edzima\teryt\models\query\TercQuery;
+use edzima\teryt\Module;
 use yii\base\InvalidCallException;
 use yii\helpers\ArrayHelper;
 
@@ -68,7 +69,24 @@ class Region extends Terc {
 	}
 
 	public static function getNames(): array {
-		return ArrayHelper::map(static::getModels(), 'region_id', 'name');
+		return [
+			static::REGION_DOLNOSLASKIE        => Module::t('region', 'Lower Silesia'),
+			static::REGION_KUJAWSKO_POMORSKIE  => Module::t('region', 'Kuyavia-Pomerania'),
+			static::REGION_LUBELSKIE           => Module::t('region', 'Lublin'),
+			static::REGION_LUBUSKIE            => Module::t('region', 'Lubusz'),
+			static::REGION_LODZKIE             => Module::t('region', 'Lodz'),
+			static::REGION_MALOPOLSKIE         => Module::t('region', 'Lesser Poland'),
+			static::REGION_MAZOWIECKIE         => Module::t('region', 'Masovia'),
+			static::REGION_OPOLSKIE            => Module::t('region', 'Opole'),
+			static::REGION_PODKARPACKIE        => Module::t('region', 'Subcarpathia'),
+			static::REGION_PODLASKIE           => Module::t('region', 'Podlaskie'),
+			static::REGION_POMORSKIE           => Module::t('region', 'Pomerania'),
+			static::REGION_SLASKIE             => Module::t('region', 'Silesia'),
+			static::REGION_SWIETOKRZYSKIE      => Module::t('region', 'Holy Cross'),
+			static::REGION_WARMINSKO_MAZURSKIE => Module::t('region', 'Warmia-Masuria'),
+			static::REGION_WIELKOPOLSKIE       => Module::t('region', 'Greater Poland'),
+			static::REGION_ZACHODNIOPOMORSKIE  => Module::t('region', 'West Pomerania'),
+		];
 	}
 
 	public static function find(): TercQuery {
