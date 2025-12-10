@@ -42,6 +42,7 @@ class Module extends BaseModule implements BootstrapInterface {
 				'edzima/teryt/commune' => 'commune.php',
 				'edzima/teryt/common' => 'common.php',
 				'edzima/teryt/simc' => 'simc.php',
+				'edzima/teryt/region' => 'region.php',
 			],
 		];
 	}
