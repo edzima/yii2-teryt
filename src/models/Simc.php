@@ -60,9 +60,9 @@ class Simc extends ActiveRecord {
 
 	public function getNameWithRegionAndDistrict(): string {
 		return $this->name
-			. ' (' .
-			Region::getNames()[$this->region_id] .
-			', ' .
+			. ' ('
+			. $this->terc->region->getTranslateName()
+			. ', ' .
 			$this->terc->district->name
 			. ')';
 	}

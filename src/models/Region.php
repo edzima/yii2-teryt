@@ -89,6 +89,15 @@ class Region extends Terc {
 		];
 	}
 
+	public function getTranslateName(): string {
+		foreach (static::getNames() as $id => $name) {
+			if (intval($id) == $this->region_id) {
+				return $name;
+			}
+		}
+		return $this->region;
+	}
+
 	public static function find(): TercQuery {
 		return parent::find()
 			->indexBy('region_id')
