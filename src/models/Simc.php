@@ -59,7 +59,12 @@ class Simc extends ActiveRecord {
 	}
 
 	public function getNameWithRegionAndDistrict(): string {
-		return $this->name . ' (' . $this->terc->region . ', ' . $this->terc->district->name . ')';
+		return $this->name
+			. ' (' .
+			Region::getNames()[$this->region_id] .
+			', ' .
+			$this->terc->district->name
+			. ')';
 	}
 
 	public function getTypeName(): string {
@@ -75,7 +80,7 @@ class Simc extends ActiveRecord {
 			[['id', 'region_id', 'district_id', 'commune_id', 'commune_type', 'city_type', 'is_common_name'], 'integer'],
 			[['date'], 'safe'],
 			[['name'], 'string', 'max' => 100],
-			['type']
+			['type'],
 		];
 	}
 
